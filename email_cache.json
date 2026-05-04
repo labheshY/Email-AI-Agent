@@ -1,0 +1,33 @@
+{
+  "19df2282782484bf": {
+    "category": "SALES",
+    "reply": "",
+    "status": "skipped"
+  },
+  "19df1bfcd1566691": {
+    "category": "SALES",
+    "reply": "",
+    "status": "skipped"
+  },
+  "19df19d305d15ecf": {
+    "category": "SUPPORT",
+    "reply": "Hi Labhesh Yawalkar,\n\nTo help you deploy your AI project, please provide details on the specific technologies and frameworks you are using, as well as your target deployment environment.\n\nThanks",
+    "subject": "Subject: Need help with project",
+    "sender": "labheshyawalkar@outlook.com",
+    "name": "Labhesh Yawalkar",
+    "timestamp": "2026-05-04T16:16:07.179711",
+    "status": "replied"
+  },
+  "19df2854846d4900": {
+    "category": "PERSONAL",
+    "reply": "Hi Labhesh Yawalkar,\n\nThanks for reaching out and for your kind words. I'm feeling much better now. I really appreciate you checking in.",
+    "status": "user_skipped",
+    "timestamp": "2026-05-04T16:30:49.486092"
+  },
+  "19df25e2835e20c7": {
+    "category": "PERSONAL",
+    "reply": "Hi Labhesh Yawalkar,\n\nYes, it works.",
+    "status": "user_skipped",
+    "timestamp": "2026-05-04T16:30:57.426377"
+  }
+}
