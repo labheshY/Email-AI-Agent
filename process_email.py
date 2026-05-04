@@ -5,7 +5,7 @@ from googleapiclient.discovery import build
 from google.oauth2.credentials import Credentials
 from load_save_cache import load_cache, save_cache, limit_cache_size
 from send_email import send_email
-
+import time
 
 def process_emails():
     creds = Credentials.from_authorized_user_file('token.json')
@@ -130,4 +130,9 @@ def process_emails():
 
 
 if __name__ == "__main__":
-    process_emails()
+    while True:
+        print("🚀 Checking emails...")
+        process_emails()
+
+        print("⏳ Sleeping for 60 seconds...\n")
+        time.sleep(60)  # run every 1 min
