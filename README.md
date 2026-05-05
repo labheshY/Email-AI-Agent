@@ -1,62 +1,140 @@
 # 🤖 AI Email Responder
 
-An automated AI-powered email assistant that reads incoming emails, classifies intent, generates replies using Gemini, and responds in real-time — all while minimizing cost and avoiding duplicate processing.
+<p align="center">
+  <b>An intelligent, context-aware email assistant that actually feels human.</b><br>
+  Reads emails • Understands intent • Replies smartly • Learns from conversations
+</p>
 
 ---
 
-## 🚀 Features
-
-* 📥 **Reads Emails** using Gmail API
-* 🧠 **Intent Classification** (Support, Personal, Sales, Spam, Urgent)
-* ✍️ **AI Reply Generation** using Gemini
-* 🧵 **Threaded Replies** (replies inside same conversation)
-* 🏷️ **Smart Labeling**
-
-  * `AI_REPLIED`
-  * `AI_SKIPPED`
-  * `AI_FAILED`
-* ⚡ **Cost Optimization**
-
-  * Rule-based filtering (skip newsletters)
-  * Caching (avoid repeated AI calls)
-* 🔁 **Duplicate Prevention**
-
-  * Cache + Gmail labels
-* 🛡️ **Error Handling**
-
-  * Handles API failures gracefully
+<p align="center">
+  <img src="https://img.shields.io/badge/Python-3.10+-blue?style=for-the-badge&logo=python" />
+  <img src="https://img.shields.io/badge/Gemini-AI-orange?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/Gmail-API-red?style=for-the-badge&logo=gmail" />
+  <img src="https://img.shields.io/badge/Status-Active-success?style=for-the-badge" />
+</p>
 
 ---
 
-## 🧠 System Flow
+## ✨ What is this?
 
+This is not just another automation script.
+It’s a **stateful AI email agent** that:
+
+* understands what emails mean
+* decides what to do
+* replies like a human
+* remembers conversations
+
+---
+
+## 🚀 Core Capabilities
+
+### 🧠 Intelligent Replies
+
+* Context-aware responses (not generic templates)
+* Controlled prompts → no hallucinations
+* Clean, concise, human tone
+
+---
+
+### 🧵 Thread Memory
+
+* Remembers last 1–2 messages per thread
+* Maintains conversation flow
+* Avoids repeating itself
+
+---
+
+### 🧹 Smart Filtering
+
+* Detects newsletters, promos, digests
+* Skips low-value emails automatically
+* Saves API cost significantly
+
+---
+
+### 🏷️ Transparent Labeling
+
+* `AI_REPLIED` → handled by agent
+* `AI_SKIPPED` → ignored emails
+* `AI_FAILED` → errors
+
+---
+
+### ⚡ Efficient by Design
+
+* Cache system prevents duplicate processing
+* Reduces unnecessary AI calls
+* Keeps system fast and cheap
+
+---
+
+### 📊 Daily Summary
+
+Every 24 hours you get:
+
+* total emails processed
+* replies sent
+* skipped emails
+* failures (if any)
+
+---
+
+## ⚙️ Configuration
+
+Create a `.env` file:
+
+```env
+GEMINI_API_KEY=your_api_key
+AUTO_REPLY=false
+AUTO_DELETE_SPAM=false
 ```
-Incoming Email
-      ↓
-Rule-based Filter (skip low-value)
-      ↓
-AI Classification (Gemini)
-      ↓
-Decision Engine
-      ↓
-Generate Reply
-      ↓
-Send Email (threaded)
-      ↓
-Apply Label + Save Cache
+
+| Variable         | Description              |
+| ---------------- | ------------------------ |
+| AUTO_REPLY       | Fully automate replies   |
+| AUTO_DELETE_SPAM | Clean spam automatically |
+
+---
+
+## 🧠 How It Works
+
+```text
+Email arrives
+   ↓
+Smart filtering (newsletter / noreply)
+   ↓
+AI classification
+   ↓
+Decision engine
+   ↓
+Thread memory injected
+   ↓
+Reply generated
+   ↓
+Email sent (threaded)
+   ↓
+Label + cache + memory update
+   ↓
+Daily summary
 ```
 
 ---
 
 ## 🏗️ Project Structure
 
-```
+```bash
 .
-├── process_email.py       # Main pipeline
-├── email_code.py          # Gmail fetching + parsing
-├── classify_and_reply.py  # AI classification + reply generation
-├── send_email.py          # Gmail send (threaded)
-├── email_cache.json       # Local cache
+├── process_email.py        # Main pipeline
+├── email_code.py           # Gmail integration
+├── classify_and_reply.py   # AI logic
+├── send_email.py           # Email sender
+├── memory.py               # Thread memory
+├── load_save_cache.py      # Cache logic
+├── email_cache.json
+├── thread_memory.json
+├── summary_state.json
 ├── requirements.txt
 └── README.md
 ```
@@ -65,7 +143,7 @@ Apply Label + Save Cache
 
 ## ⚙️ Setup
 
-### 1. Clone Repository
+### 1️⃣ Clone the repo
 
 ```bash
 git clone <your-repo-url>
@@ -74,7 +152,7 @@ cd <repo>
 
 ---
 
-### 2. Install Dependencies
+### 2️⃣ Install dependencies
 
 ```bash
 pip install -r requirements.txt
@@ -82,38 +160,21 @@ pip install -r requirements.txt
 
 ---
 
-### 3. Setup Gmail API
+### 3️⃣ Setup Gmail API
 
-* Create project in Google Cloud
-* Enable Gmail API
-* Create OAuth Client (Desktop App)
-* Download:
-
-  * `credentials.json`
+* Enable Gmail API in Google Cloud
+* Create OAuth client
+* Download `credentials.json`
 
 Generate token:
 
 ```bash
-python oauth_setup.py
-```
-
-This creates:
-
-```
-token.json
+python auth_script.py
 ```
 
 ---
 
-### 4. Setup Environment Variables
-
-```bash
-GEMINI_API_KEY=your_api_key
-```
-
----
-
-### 5. Run the Agent
+### 4️⃣ Run the agent
 
 ```bash
 python process_email.py
@@ -121,118 +182,84 @@ python process_email.py
 
 ---
 
-## 🔁 Continuous Execution
+## 🔁 Automation Options
 
-The system runs in a loop:
+* 🖥️ Local → Windows Task Scheduler
+* ☁️ Cloud → Railway / Render / AWS
 
-```python
-while True:
-    process_emails()
-    time.sleep(60)
+---
+
+## 📌 Example
+
+### ❌ Without memory
+
+```text
+Hi,
+Thanks for reaching out...
 ```
 
-👉 Checks emails every 60 seconds
+### ✅ With memory
 
----
+```text
+Hi Labhesh,
 
-## 🏷️ Gmail Labels
+Following up on your deployment issue, the "invalid_grant" error usually points to authentication problems.
 
-Create these labels in Gmail:
-
-```
-AI_REPLIED
-AI_SKIPPED
-AI_FAILED
+Best regards,  
+Labhesh
 ```
 
-Used for:
+---
 
-* avoiding duplicate processing
-* tracking system behavior
+## 🧠 Design Philosophy
+
+* Keep it **simple but powerful**
+* Avoid unnecessary complexity (no vector DB yet)
+* Optimize for **real-world usage**
+* Build like a **product, not a demo**
 
 ---
 
-## 💾 Caching Strategy
+## 🚀 Roadmap
 
-* Stores processed emails in `email_cache.json`
-* Prevents:
-
-  * duplicate replies
-  * repeated AI calls
-* Handles:
-
-  * success
-  * skipped
-  * failed states
+* [ ] Tone learning (personal style)
+* [ ] Priority inbox (AI ranking)
+* [ ] Dashboard UI
+* [ ] Multi-account support
+* [ ] Retry system
 
 ---
 
-## 🔐 Security
+## 📦 Version
 
-❗ NEVER commit:
+**v1.0**
 
-```
-token.json
-credentials.json
-.env
-```
-
-Use:
-
-* `.gitignore`
-* environment variables
+* Thread memory
+* Smart filtering
+* Logging
+* Daily summary
+* Gmail labeling
+* Cache system
 
 ---
 
-## ⚠️ Safety Mode (Recommended)
+## 💡 Final Thought
 
-Before full automation:
-
-```python
-confirm = input("Send? (y/n): ")
-```
-
-👉 Prevents accidental replies during testing
+> This started as automation…
+> It’s slowly becoming a real AI assistant.
 
 ---
 
-## 🚀 Deployment
+## ⭐ Support
 
-Designed to run on:
+If you found this useful:
 
-* Railway (recommended)
-* AWS
-* Render
-
----
-
-## 🧠 Future Improvements
-
-* Memory-based replies (context awareness)
-* Priority inbox (AI ranking)
-* Web dashboard
-* Multi-account support
-* Retry system for failed emails
+⭐ Star the repo
+🍴 Fork it
+🚀 Build on top of it
 
 ---
 
-## 📌 Key Insight
-
-> This is not just automation — it’s an AI decision system.
-
----
-
-## 👨‍💻 Author
-
-Built as an end-to-end AI agent system combining:
-
-* Gmail API
-* Gemini AI
-* Smart filtering + caching
-* Production-style design
-
----
-
-## ⭐ If you like this project
-
-Give it a star ⭐ and build on top of it 🚀
+<p align="center">
+  Built with curiosity, debugging, and a lot of trial & error ⚡
+</p>
