@@ -1,6 +1,9 @@
 from email_code import get_full_emails
 from google import genai
+import os
+from dotenv import load_dotenv
 
+load_dotenv()
 client = genai.Client()
 
 
@@ -14,6 +17,7 @@ def classify_email(subject, body):
         - SALES → promotions, offers, marketing
         - SPAM → irrelevant/junk
         - URGENT → security, money, deadlines
+        - NOTIFICATION → automated system emails, newsletters, digests, no-reply
 
         Return ONLY one word.
 
@@ -27,9 +31,14 @@ def classify_email(subject, body):
             contents=prompt
         )
     
-    return response.text.strip()
+    result = response.text.strip().upper()
+    # sometimes it returns ```SUPPORT``` or SUPPORT.
+    for cat in ["SUPPORT", "PERSONAL", "SALES", "SPAM", "URGENT", "NOTIFICATION"]:
+        if cat in result:
+            return cat
+    return result
 
-def generate_reply(subject, body, category, name=None):
+def generate_reply(subject, body, category, name=None, context_text=""):
 
     greeting = f"Hi {name}," if name else "Hi,"
     
@@ -39,27 +48,24 @@ def generate_reply(subject, body, category, name=None):
         Your job:
         Write a REAL email reply.
 
-        Start with this greeting:
-        {greeting}
+        {context_text}
 
         STRICT RULES:
-        - Do NOT ask for more information
-        - Do NOT give multiple options
-        - Do NOT include placeholders like {{name}} or {{subject}}
-        - Do NOT explain anything
-        - ONLY output the final email reply
+        - Write like a busy human engineer. Keep it extremely concise (under 3-4 sentences).
+        - Tone should be casual but professional.
+        - Directly address the topic without fluff.
+        - Do NOT use bullet points or lists unless absolutely necessary.
+        - Do NOT use typical AI phrases like "I can definitely help you with that" or "Here are a few common culprits."
+        - No placeholders.
 
-        STYLE:
-        - Professional
-        - Concise
-        - Human-like
+        Start with a greeting.
+        End with:
+        Best regards,
+        Labhesh
 
-        CONTEXT:
-        Category: {category}
+        Email:
         Subject: {subject}
-        Email Body: {body}
-
-        Now write the reply.
+        Body: {body}
         """
 
     response = client.models.generate_content( 
@@ -80,5 +86,6 @@ def is_likely_newsletter(subject, body):
 
 def is_marketing_sender(sender):
     return any(x in sender.lower() for x in [
-        "noreply", "newsletter", "updates", "marketing"
+        "noreply", "no-reply", "newsletter", "updates", "marketing", 
+        "digest", "notification", "system", "quora", "medium"
     ])

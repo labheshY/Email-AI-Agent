@@ -82,11 +82,14 @@ def clean_name(name, email):
         if not any(word in name.lower() for word in bad_keywords) and len(name.split()) <= 3:
             return name
 
-    return extract_name_fallback()
+    return extract_name_fallback(email)
 
 
 def extract_name_fallback(email):
-    username = email.split("@")[0]
+    if not email:
+        return None
+        
+    username = email.split("@")[0] if "@" in email else email
 
     # remove numbers and symbols
     username = username.replace(".", " ").replace("_", " ")
@@ -95,7 +98,7 @@ def extract_name_fallback(email):
     name = username.title()
 
     # avoid bad cases
-    if any(x in username for x in ["noreply", "support", "info", "admin"]):
+    if any(x in username.lower() for x in ["noreply", "support", "info", "admin"]):
         return None
 
     return name
@@ -105,6 +108,25 @@ def get_label_ids(service):
     labels = results.get('labels', [])
 
     label_map = {label['name']: label['id'] for label in labels}
+    
+    # Ensure our required labels exist
+    required_labels = ["AI_REPLIED", "AI_SKIPPED", "AI_FAILED"]
+    for req_label in required_labels:
+        if req_label not in label_map:
+            print(f"Creating missing label: {req_label}")
+            try:
+                new_label = service.users().labels().create(
+                    userId='me',
+                    body={
+                        "name": req_label,
+                        "labelListVisibility": "labelShow",
+                        "messageListVisibility": "show"
+                    }
+                ).execute()
+                label_map[req_label] = new_label['id']
+            except Exception as e:
+                print(f"Error creating label {req_label}: {e}")
+                
     return label_map
 
 def add_label(service, msg_id, label_id):
@@ -115,10 +137,9 @@ def add_label(service, msg_id, label_id):
             "addLabelIds": [label_id]
         }
     ).execute()
-# emails = get_full_emails()
 
-# for e in emails:
-#     print("\n--- EMAIL ---")
-#     print("From:", e["from"])
-#     print("Subject:", e["subject"])
-#     print("Body:", e["body"][:200])  # preview
+def trash_message(service, msg_id):
+    service.users().messages().trash(
+        userId='me',
+        id=msg_id
+    ).execute()

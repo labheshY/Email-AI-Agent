@@ -29,5 +29,86 @@
     "reply": "Hi Labhesh Yawalkar,\n\nYes, it works.",
     "status": "user_skipped",
     "timestamp": "2026-05-04T16:30:57.426377"
+  },
+  "19df336b6fabe308": {
+    "category": "SUPPORT",
+    "reply": "Hi Labhesh Yawalkar,\n\nWe have reviewed your request regarding the testing task and confirm it is scheduled correctly.\n\nSincerely,\n\n[Your Name]",
+    "subject": "Testing Task",
+    "sender": "labheshyawalkar@outlook.com",
+    "name": "Labhesh Yawalkar",
+    "timestamp": "2026-05-04T19:11:38.354597",
+    "status": "replied"
+  },
+  "19df18080225af5e": {
+    "category": "SALES",
+    "reply": "",
+    "status": "skipped"
+  },
+  "19df11309099950f": {
+    "category": "SALES",
+    "reply": "",
+    "status": "skipped"
+  },
+  "19df0e14ca6dc911": {
+    "category": "SALES",
+    "reply": "",
+    "status": "skipped"
+  },
+  "19df069da0893c07": {
+    "category": "SALES",
+    "reply": "",
+    "status": "skipped"
+  },
+  "19df6bf08dc7d973": {
+    "category": "SUPPORT",
+    "reply": "Hi Labhesh,\n\nThanks for reaching out. I can definitely help you with that.\n\nCould you tell me more about the specific errors you're seeing with the environment variables and API keys during deployment? Knowing the exact error messages will help me pinpoint the issue.\n\nOnce I have that, I can guide you on the best way to configure them for your project.\n\nBest regards,\nLabhesh",
+    "subject": "Help with deployment issue",
+    "sender": "labheshyawalkar@outlook.com",
+    "name": "Labhesh Yawalkar",
+    "timestamp": "2026-05-05T11:44:20.119942",
+    "status": "replied"
+  },
+  "19df6a79b900a871": {
+    "category": "SALES",
+    "reply": "",
+    "status": "skipped"
+  },
+  "19df639075de42aa": {
+    "category": "SALES",
+    "reply": "",
+    "status": "skipped"
+  },
+  "19df623c4d981e8c": {
+    "category": "PERSONAL",
+    "reply": "Hi there,\n\nIt looks like you've forwarded an email digest from Quora. These emails contain links to various articles and discussions.\n\nPlease let me know if you have a specific question or if there's anything I can help you with regarding the content of these emails.\n\nBest regards,\nLabhesh",
+    "status": "user_skipped",
+    "timestamp": "2026-05-05T11:44:56.094406"
+  },
+  "19df5ef688befbbd": {
+    "category": "PERSONAL",
+    "reply": "Hi,\n\nThanks for sending this over. Looks like some really interesting reads, especially the one about Claude.md. I'll definitely check them out.\n\nBest regards,\nLabhesh",
+    "status": "user_skipped",
+    "timestamp": "2026-05-05T11:45:20.205756"
+  },
+  "19df719ceaddc0df": {
+    "category": "SUPPORT",
+    "reply": "Hi Labhesh,\n\nThanks for the additional information. The \"invalid_grant\" error when accessing the Gmail API often points to an issue with how your OAuth 2.0 credentials are being handled.\n\nSince you've already checked the token file, let's focus on a few other common culprits:\n\n1.  **Expiration of Refresh Token:** The refresh token might have expired or been revoked. You might need to re-authenticate to get a fresh set of tokens.\n2.  **Scope Mismatch:** Ensure the scopes you requested when generating the OAuth credentials exactly match the scopes your application is trying to access. Even a small difference can cause authentication failures.\n3.  **Incorrect Client ID/Secret:** Double-check that the client ID and client secret you're using in your application or environment variables are correct and haven't been mistyped.\n4.  **Token Storage and Retrieval:** How are you storing and retrieving your tokens? Make sure your code is correctly loading and using the `access_token`, `refresh_token`, and `expiry` from your token file.\n\nCould you confirm if you've recently had to re-authenticate through the Google consent screen? That often indicates a refresh token issue.\n\nBest regards,\nLabhesh",
+    "subject": "Re: Help with deployment issue",
+    "sender": "labheshyawalkar@outlook.com",
+    "name": "Labhesh Yawalkar",
+    "timestamp": "2026-05-05T13:23:04.746331",
+    "status": "replied"
+  },
+  "19df466f4531a7bf": {
+    "category": "NOTIFICATION",
+    "reply": "",
+    "status": "skipped",
+    "timestamp": "2026-05-05T13:23:04.788290"
+  },
+  "19df4618cfc47630": {
+    "category": "NOTIFICATION",
+    "reply": "",
+    "status": "skipped",
+    "timestamp": "2026-05-05T13:23:12.232634"
   }
 }

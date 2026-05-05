@@ -6,3 +6,12 @@ credentials.json
 # Python
 __pycache__/
 *.pyc
+.venv/
+
+# Local State & Cache
+email_cache.json
+thread_memory.json
+summary_state.json
+
+# Excluded Docs
+production_ready.md

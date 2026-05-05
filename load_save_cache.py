@@ -8,8 +8,11 @@ def load_cache():
         with open(cache_file, "w") as f:
             json.dump({}, f)
         return {}
-    with open(cache_file, "r") as f:
-        return json.load(f)
+    try:
+        with open(cache_file, "r") as f:
+            return json.load(f)
+    except json.JSONDecodeError:
+        return {}
     
 def save_cache(cache):
     with open(cache_file, "w") as f:
