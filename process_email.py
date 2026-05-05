@@ -297,6 +297,7 @@ Your AI Assistant
         logger.error(f"Failed to send daily summary: {e}")
 
 if __name__ == "__main__":
+    # Uncomment the below code to run it indefinitely and comment/ remove below call to process_emails()
     # while True:
     #     logger.info("🚀 Checking emails...")
     #     process_emails()
